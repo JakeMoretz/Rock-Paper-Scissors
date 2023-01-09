@@ -38,26 +38,30 @@ function playRound(playerChoice) {
     tallyWins();
     displayRound(playerChoice, computerChoice, winner);
     wins = checkWins();
-     if(wins == 5) {
+     if(wins === 5) {
         displayEnd()
      }
 }
 
+
+
 function displayEnd() {
-    let playerWins = winners.filter((item) => item == "player").length;
+    
+    const playerWins = winners.filter((item) => item == "Player").length;
+    const computerWins = winners.filter((item) => item == "Computer").length;
     if (playerWins == 5){
-        document.querySelector('.winner').textContent = 'you won 5 times, Congrats!'
-    } else {
-        document.querySelector('.winner').textContent = 'Sorry, the computer won 5 times'
+         document.querySelector('.winner').textContent = 'You won 5 times, Congrats!'
+    } else if (computerWins == 5){
+         document.querySelector('.winner').textContent = 'Sorry, the computer won 5 times.'
     }
-    document.querySelector('.reset').style.display = "flex"
+         document.querySelector('.reset').style.display = "flex"
     
 }
 
 
 
 function displayRound (playerChoice, computerChoice, winner) {
-    document.querySelector('.playerChoice').textContent = `you chose: ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`
+    document.querySelector('.playerChoice').textContent = `You Chose: ${playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1)}`
     document.querySelector('.computerChoice').textContent = `The Computer chose: ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}`
     document.querySelector('.winner').textContent = `Round winner: ${winner}`
 }
@@ -66,8 +70,8 @@ function tallyWins() {
     const playerWins = winners.filter((item) => item == "Player").length;
     const computerWins = winners.filter((item) => item == "Computer").length;
     const ties = winners.filter((item) => item == "Tie").length;
-    document.querySelector('.playerScore').textContent = `Score: ${playerWins}`
-    document.querySelector('.computerScore').textContent = `Score: ${computerWins}`
+    document.querySelector('.playerScore').textContent = `Your Score: ${playerWins}`
+    document.querySelector('.computerScore').textContent = `Computer Score: ${computerWins}`
     document.querySelector('.ties').textContent = `Ties: ${ties}`
 }
 
@@ -90,7 +94,7 @@ function checkWinner(choice1, choice2){
     (choice1 === 'paper' && choice2 === 'rock') || 
     (choice1 === 'scissors' && choice2 === 'paper')
     ){
-        return 'Player';
+        return 'You Won!';
     } else {
         return 'Computer';
     }
